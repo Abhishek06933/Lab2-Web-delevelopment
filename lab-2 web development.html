@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="fetchCat()">All Names</button><br></br>
+    <button onclick="HthIssues()">Health Issues</button> 
+    <label for="userInput"></label>
+    <input type="text" id="userInput" name="userInput">
+
+    <div id="MyId"></div>
+   
+    <form><br></br>
+            <input type="radio" name="Number" value="Imperial"> Imperial
+            <input type="radio" name="Number" value="Metric"> Metric
+            <button onclick="weightCat()">Weight</button>
+        
+    </form>
+    <br></br>
+    <button onclick="IntFrnd()">Intelligence-Friendly</button><br></br>
+    <button onclick="AvgInt()">Average Intelligence</button><br></br>
+    <button onclick="weightCat()">Average Intelligence For Child  Friendly =4</button><br></br>
+   
+   
+   <script>
+
+
+function fetchCat(){
+
+MyId =document.getElementById("MyId")
+
+var ProvidedUrl="https://api.thecatapi.com/v1/breeds";
+
+
+     fetch(ProvidedUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Something went wrong.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            Object.values(data).forEach(Data => {
+                // putcontent.appendChild(document.createTextNode(Data.origin));
+                MyId.appendChild(document.createElement('br'));
+                TheData=Data.name;
+                MyId.append(document.createElement('p').innerHTML=TheData);
+                
+            });
+     
+        })
+        .catch(error => {
+            console.error('Error fetching JSON:', error);
+        });
+ 
+}
+    </script>
+</body>
+</html>
